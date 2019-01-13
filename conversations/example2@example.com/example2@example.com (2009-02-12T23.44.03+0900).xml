@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chat xmlns="http://purl.org/net/ulf/ns/0.4-02" account="me@me.com" service="MSN"><event type="windowOpened" sender="me@me.com" time="2009-02-12T23:44:03+09:00"/>
+<message sender="me@me.com" time="2009-02-12T23:44:16+09:00" alias="George"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">Hey, you hear about this new "bitcoin" thing?</span></div></message>
+<message sender="example2@example.com" time="2009-02-12T23:44:27+09:00" alias="Banner"><div><span style="color: #0067ce; font-family: Arial; font-size: 12pt; font-weight: bold;">No? wtf is that</span></div></message>
+<message sender="me@me.com" time="2009-02-12T23:44:49+09:00" alias="George"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">Oh it's like virtual money you can use to buy stuff</span></div></message>
+<message sender="example2@example.com" time="2009-02-12T23:46:13+09:00" alias="Banner"><div><span style="color: #0067ce; font-family: Arial; font-size: 12pt; font-weight: bold;">Oh. Well that sounds stupid lol</span></div></message>
+<message sender="me@me.com" time="2009-02-12T23:47:06+09:00" alias="George"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">Yeah maybe it is a bit</span></div></message>
+<message sender="me@me.com" time="2009-02-12T23:47:19+09:00" alias="George"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">I was gonna buy a whole lot in case it takes off</span></div></message>
+<message sender="example2@example.com" time="2009-02-12T23:48:20+09:00" alias="Banner"><div><span style="color: #0067ce; font-family: Arial; font-size: 12pt; font-weight: bold;">Waste of money I reckon.</span></div></message>
+<message sender="me@me.com" time="2009-02-12T23:48:33+09:00" alias="George"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">yea you're right. nevermind.</span></div></message>
+<event type="windowClosed" sender="me@me.com" time="2009-02-13T00:49:00+09:00"/>
+</chat>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chat xmlns="http://purl.org/net/ulf/ns/0.4-02" account="me@me.com" service="MSN"><event type="windowOpened" sender="me@me.com" time="2009-05-03T12:28:45+08:00"/>
+<message sender="me@me.com" time="2009-05-03T12:28:57+08:00" alias="Angsty MSN name 1"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">This is a message</span></div></message>
+<message sender="example@example.com" time="2009-05-03T12:28:57+08:00" alias="Angsty MSN name 2"><div><span style="color: #000000; font-family: Helvetica; font-size: 12pt;">This is also a message</span></div></message>
+</chat>

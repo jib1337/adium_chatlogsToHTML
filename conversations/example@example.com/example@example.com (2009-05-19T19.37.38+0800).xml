@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chat xmlns="http://purl.org/net/ulf/ns/0.4-02" account="me@me.com" service="MSN"><event type="windowOpened" sender="me@me.com" time="2009-05-19T19:37:38+08:00"/>
+<message sender="example@example.com" time="2009-05-19T19:37:38+08:00" alias="John"><div><span style="color: #000000; font-family: Arial; font-size: 12pt;">What up</span></div></message>
+<message sender="me@me.com" time="2009-05-19T19:37:49+08:00" alias="James"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">Nothing just coming up with some placeholder text</span></div></message>
+<message sender="example@example.com" time="2009-05-19T19:38:03+08:00" alias="John"><div><span style="color: #000000; font-family: Arial; font-size: 12pt;">Well ok then</span></div></message>
+<message sender="me@me.com" time="2009-05-19T19:38:36+08:00" alias="James"><div><span style="color: #ff0300; font-family: Comic Sans MS; font-size: 12pt; font-weight: bold;">lol</span></div></message>
+</chat>
