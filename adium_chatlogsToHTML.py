@@ -139,7 +139,6 @@ if htmlLoad == True:
                 except:
                     logFile.append('An error occured when making HTML data from ' + xmlPath + '\n')
 
-
     logFile.append('Conversion process finished.' + '\n')
     logFile.append('Completed operations on ' + str(conversionCount) + ' logs.' + '\n')
     logFile.append('Error count: ' + str(errorCount) + '\n')
