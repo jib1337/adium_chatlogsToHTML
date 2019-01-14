@@ -1,11 +1,14 @@
+# Jack Nelson | Adium chatlog to HTML converter
+
 import os
 import xml.etree.ElementTree as ET
 
 def convertPath(rootFilePath):
-    # convert os.walk file path to one I can use to open the file
+    # convert os.walk file path to one we can use to open the file
     return(rootFilePath.replace('\\', '/')[2:])
 
 def createHTML(conversationJSON, chatName, convoNumber):
+    # Take the JSON - formatted conversation, construct and output HTML file.
 
     htmlComplete = htmlPrefix
 
@@ -41,7 +44,7 @@ def createHTML(conversationJSON, chatName, convoNumber):
 
         #htmlComplete += newMessage
     if len(messages) != 0:
-        htmlComplete += ''.join(messages)
+        htmlComplete += ''.join(messages) + htmlSuffix
 
         file = open('chatlogs_processed/' + chatName + '/' + chatName + '_' + str(convoNumber) + '.html', 'w', encoding = 'utf-8')
         file.write(htmlComplete)
@@ -53,6 +56,8 @@ def createHTML(conversationJSON, chatName, convoNumber):
         return(False)
 
 def getConvo(root):
+    # Recieve parsed XML content and convert nessecary components to form JSON data.
+
     conversation = []
     for i in range(len(root)):
         try:
@@ -88,6 +93,7 @@ except:
 
 currentRoot = None
 if htmlLoad == True:
+    print('Starting conversion process now...')
     logFile.append('Starting conversion process now...' + '\n')
     for root, dirs, files in os.walk('.'):
         if currentRoot == root.split("\\")[-1].split(' ')[0]:
@@ -139,3 +145,4 @@ if htmlLoad == True:
     file = open('chatlogs_processed/logfile.txt', 'w')
     file.writelines(logFile)
     file.close()
+    print('Done.')

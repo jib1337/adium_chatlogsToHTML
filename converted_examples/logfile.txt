@@ -4,7 +4,6 @@ Created HTML file for: example2@example.com #1
 New working directory: example@example.com
 Created HTML file for: example@example.com #1
 Created HTML file for: example@example.com #2
-New working directory: converted_examples
 Conversion process finished.
 Completed operations on 3 logs.
 Error count: 0
