@@ -103,7 +103,8 @@ if htmlLoad == True:
         else:
             currentRoot = root.split("\\")[-1].split(' ')[0]
             try:
-                if currentRoot == 'conversations' or currentRoot == 'chatlogs_processed' or currentRoot == '.':
+                if currentRoot == 'conversations' or currentRoot == 'chatlogs_processed'\
+                or currentRoot == '.' or currentRoot == 'converted_examples':
                     pass
                 else:
                     logFile.append('New working directory: ' + currentRoot + '\n')
