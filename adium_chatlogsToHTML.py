@@ -42,8 +42,9 @@ def createHTML(conversationJSON, chatName, convoNumber):
         
         messages.append(newMessage)
 
-        #htmlComplete += newMessage
-    if len(messages) != 0:
+    if len(messages) > 0:
+        # We only want to proceed if there is at least one valid message in the conversation.
+
         htmlComplete += ''.join(messages) + htmlSuffix
 
         file = open('chatlogs_processed/' + chatName + '/' + chatName + '_' + str(convoNumber) + '.html', 'w', encoding = 'utf-8')
@@ -120,10 +121,10 @@ if htmlLoad == True:
                 except:
                     logFile.append('An error occured when opening the file ' + xmlPath + '\n')
                     errorCount += 1
+
                 try:
                     conversationJSON = getConvo(convoRoot)
                     createHTML(getConvo(convoRoot), currentRoot, convoNumber)
-                    
                 except:
                     logFile.append('An error occured when making JSON data from ' + xmlPath + '\n')
                     errorCount +=1
