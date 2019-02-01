@@ -96,19 +96,15 @@ currentRoot = None
 if htmlLoad == True:
     print('Starting conversion process now...')
     logFile.append('Starting conversion process now...' + '\n')
-    for root, dirs, files in os.walk('.'):
+    for root, dirs, files in os.walk('.\\conversations'):
         if currentRoot == root.split("\\")[-1].split(' ')[0]:
             # If the root directory is under the same email we previously processed, do not create a new folder
             pass
         else:
             currentRoot = root.split("\\")[-1].split(' ')[0]
             try:
-                if currentRoot == 'conversations' or currentRoot == 'chatlogs_processed'\
-                or currentRoot == '.' or currentRoot == 'converted_examples':
-                    pass
-                else:
-                    logFile.append('New working directory: ' + currentRoot + '\n')
-                    os.makedirs('chatlogs_processed/' + currentRoot)
+                logFile.append('New working directory: ' + currentRoot + '\n')
+                os.makedirs('chatlogs_processed/' + currentRoot)
             except:
                 # If there is already a directory with that name
                 pass
@@ -128,7 +124,7 @@ if htmlLoad == True:
                     createHTML(getConvo(convoRoot), currentRoot, convoNumber)
                 except:
                     logFile.append('An error occured when making JSON data from ' + xmlPath + '\n')
-                    errorCount +=1
+                    errorCount += 1
 
                 try:
                     if createHTML(conversationJSON, currentRoot, convoNumber) == True:
@@ -139,6 +135,7 @@ if htmlLoad == True:
                         logFile.append('File creation for ' + xmlfile + ' skipped - no message data present\n')
                 except:
                     logFile.append('An error occured when making HTML data from ' + xmlPath + '\n')
+                    errorCount += 1
 
     logFile.append('Conversion process finished.' + '\n')
     logFile.append('Completed operations on ' + str(conversionCount) + ' logs.' + '\n')
