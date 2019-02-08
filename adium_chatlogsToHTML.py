@@ -120,14 +120,7 @@ if htmlLoad == True:
                     errorCount += 1
 
                 try:
-                    conversationJSON = getConvo(convoRoot)
-                    createHTML(getConvo(convoRoot), currentRoot, convoNumber)
-                except:
-                    logFile.append('An error occured when making JSON data from ' + xmlPath + '\n')
-                    errorCount += 1
-
-                try:
-                    if createHTML(conversationJSON, currentRoot, convoNumber) == True:
+                    if createHTML(getConvo(convoRoot), currentRoot, convoNumber) == True:
                         logFile.append('Created HTML file for: ' + currentRoot + ' #' + str(convoNumber) + '\n')
                         convoNumber += 1
                         conversionCount += 1
