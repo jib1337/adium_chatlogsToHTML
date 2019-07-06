@@ -2,6 +2,7 @@
 
 import os
 import argparse
+from datetime import datetime
 import xml.etree.ElementTree as ET
 
 argparser = argparse.ArgumentParser(description='Adium Chatlogs To HTML: Chatlog Converter')
@@ -110,7 +111,7 @@ except:
 currentRoot = None
 if htmlLoad == True:
     print('Starting conversion process now...')
-    logFile.append('Starting conversion process now...' + '\n')
+    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] Starting conversion process now...' + '\n')
 
     for root, dirs, files in os.walk('.\\' + rootFolder):
         if currentRoot == root.split("\\")[-1].split(' ')[0]:
@@ -119,7 +120,7 @@ if htmlLoad == True:
         else:
             currentRoot = root.split("\\")[-1].split(' ')[0]
             try:
-                logFile.append('New working directory: ' + currentRoot + '\n')
+                logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] New working directory: ' + currentRoot + '\n')
                 os.makedirs(outFolder + '/' + currentRoot)
             except:
                 # If there is already a directory with that name
@@ -132,21 +133,21 @@ if htmlLoad == True:
                     xmlPath = (convertPath(root) + '/' + xmlfile)
                     convoRoot = ET.parse(xmlPath).getroot()
                 except:
-                    logFile.append('An error occured when opening the file ' + xmlPath + '\n')
+                    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when opening the file ' + xmlPath + '\n')
                     errorCount += 1
 
                 try:
                     if createHTML(getConvo(convoRoot), currentRoot, convoNumber) == True:
-                        logFile.append('Created HTML file for: ' + currentRoot + ' #' + str(convoNumber) + '\n')
+                        logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] Created HTML file for: ' + currentRoot + ' #' + str(convoNumber) + '\n')
                         convoNumber += 1
                         conversionCount += 1
                     else:
-                        logFile.append('File creation for ' + xmlfile + ' skipped - no message data present\n')
+                        logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] File creation for ' + xmlfile + ' skipped - no message data present\n')
                 except:
-                    logFile.append('An error occured when making HTML data from ' + xmlPath + '\n')
+                    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when making HTML data from ' + xmlPath + '\n')
                     errorCount += 1
 
-    logFile.append('Conversion process finished.' + '\n')
+    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] Conversion process finished.' + '\n')
     logFile.append('Completed operations on ' + str(conversionCount) + ' logs.' + '\n')
     logFile.append('Error count: ' + str(errorCount) + '\n')
     file = open(outFolder + '/' + 'logfile.txt', 'w')
