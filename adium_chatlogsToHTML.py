@@ -1,7 +1,13 @@
 # Jack Nelson | Adium chatlog to HTML converter
 
 import os
+import argparse
 import xml.etree.ElementTree as ET
+
+argparser = argparse.ArgumentParser(description='Adium Chatlogs To HTML: Chatlog Converter')
+argparser.add_argument('-r', '--root', default='conversations', help='Specify the root directory of where all the conversations are')
+argparser.add_argument('-o', '--out', default='chatlogs_processed', help='Specify the output directory of processed chatlogs')
+args = argparser.parse_args()
 
 def convertPath(rootFilePath):
     # convert os.walk file path to one we can use to open the file
@@ -47,7 +53,7 @@ def createHTML(conversationJSON, chatName, convoNumber):
 
         htmlComplete += ''.join(messages) + htmlSuffix
 
-        file = open('chatlogs_processed/' + chatName + '/' + chatName + '_' + str(convoNumber) + '.html', 'w', encoding = 'utf-8')
+        file = open(outFolder + '/' + chatName + '/' + chatName + '_' + str(convoNumber) + '.html', 'w', encoding = 'utf-8')
         file.write(htmlComplete)
         file.close()
         
@@ -79,6 +85,9 @@ def getConvo(root):
 
     return(conversation)
 
+rootFolder = args.root.rstrip('/')
+outFolder = args.out.rstrip('/')
+
 htmlLoad = False
 try:
     file = open('format_stripped.html', 'r')
@@ -92,11 +101,18 @@ try:
 except:
     print('Error reading HTML format file.')
 
+# If the specified output directory doesn't exist, create it
+try:
+    os.makedirs(rootFolder)
+except:
+    pass
+
 currentRoot = None
 if htmlLoad == True:
     print('Starting conversion process now...')
     logFile.append('Starting conversion process now...' + '\n')
-    for root, dirs, files in os.walk('.\\conversations'):
+
+    for root, dirs, files in os.walk('.\\' + rootFolder):
         if currentRoot == root.split("\\")[-1].split(' ')[0]:
             # If the root directory is under the same email we previously processed, do not create a new folder
             pass
@@ -104,7 +120,7 @@ if htmlLoad == True:
             currentRoot = root.split("\\")[-1].split(' ')[0]
             try:
                 logFile.append('New working directory: ' + currentRoot + '\n')
-                os.makedirs('chatlogs_processed/' + currentRoot)
+                os.makedirs(outFolder + '/' + currentRoot)
             except:
                 # If there is already a directory with that name
                 pass
@@ -133,7 +149,7 @@ if htmlLoad == True:
     logFile.append('Conversion process finished.' + '\n')
     logFile.append('Completed operations on ' + str(conversionCount) + ' logs.' + '\n')
     logFile.append('Error count: ' + str(errorCount) + '\n')
-    file = open('chatlogs_processed/logfile.txt', 'w')
+    file = open(outFolder + '/' + 'logfile.txt', 'w')
     file.writelines(logFile)
     file.close()
     print('Done.')

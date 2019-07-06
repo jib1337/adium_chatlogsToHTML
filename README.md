@@ -9,6 +9,20 @@ They are stored in XML format under both .xml and .chatlog suffixes, and they ar
 However, if you would like to take these chat logs, and convert them into clean, readable HTML, this script will help to do that.
 
 ## Usage overview
+
+```
+$ python adium_chatlogsToHTML.py --help
+usage: adium_chatlogsToHTML.py [-h] [-r ROOT] [-o OUT]
+
+Adium Chatlogs To HTML: Chatlog Converter
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r ROOT, --root ROOT  Specify the root directory of where all the
+                        conversations are
+  -o OUT, --out OUT     Specify the output directory of processed chatlogs
+```
+
 1. Place all your adium chatlog folders/files in the "conversations" directory. This directory will be searched by the script for valid chatlogs.
 2. Run the script.
 3. The organized HTML chatlogs will be placed in a directory named "chatlogs_processed" in the same directory as the script. They will be sorted into folders by whichever email address is present in the chatlog filename.
