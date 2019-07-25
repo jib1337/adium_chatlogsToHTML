@@ -1,4 +1,4 @@
-# adium_chatlogsToHTML
+# adium_chatlogsToHTML | Jack Nelson, 2019
 
 Tested on Windows with log data created by Adium 1.4.
 
