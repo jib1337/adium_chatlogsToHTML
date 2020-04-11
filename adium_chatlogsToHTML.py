@@ -91,16 +91,16 @@ outFolder = args.out.rstrip('/')
 
 htmlLoad = False
 try:
-    file = open('format_stripped.html', 'r')
-    htmlPrefix = file.readline()
-    htmlMessage = file.readline()
-    htmlSuffix = file.readline()
+    with open('format_stripped.html', 'r') as file:
+        htmlPrefix = file.readline()
+        htmlMessage = file.readline()
+        htmlSuffix = file.readline()
     htmlLoad = True
     logFile = []
     errorCount = 0
     conversionCount = 0
-except:
-    print('Error reading HTML format file.')
+except Exception as e:
+    print('Error reading HTML format file: ' + str(e))
 
 # If the specified output directory doesn't exist, create it
 try:
@@ -132,8 +132,8 @@ if htmlLoad == True:
                 try:
                     xmlPath = (convertPath(root) + '/' + xmlfile)
                     convoRoot = ET.parse(xmlPath).getroot()
-                except:
-                    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when opening the file ' + xmlPath + '\n')
+                except Exception as e:
+                    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when opening the file ' + xmlPath + ': ' + str(e) + '\n')
                     errorCount += 1
 
                 try:
@@ -143,8 +143,8 @@ if htmlLoad == True:
                         conversionCount += 1
                     else:
                         logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] File creation for ' + xmlfile + ' skipped - no message data present\n')
-                except:
-                    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when making HTML data from ' + xmlPath + '\n')
+                except Exception as e:
+                    logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when making HTML data from ' + xmlPath + ': ' + str(e) + '\n')
                     errorCount += 1
 
     logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] Conversion process finished.' + '\n')

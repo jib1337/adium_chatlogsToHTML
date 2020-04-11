@@ -11,7 +11,7 @@ However, if you would like to take these chat logs, and convert them into clean,
 ## Usage overview
 
 ```
-$ python adium_chatlogsToHTML.py --help
+$ python3 adium_chatlogsToHTML.py --help
 usage: adium_chatlogsToHTML.py [-h] [-r ROOT] [-o OUT]
 
 Adium Chatlogs To HTML: Chatlog Converter
