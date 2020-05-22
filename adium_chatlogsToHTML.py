@@ -105,12 +105,12 @@ except Exception as e:
 
 # If the specified output directory doesn't exist, create it
 try:
-    os.makedir(rootFolder)
+    os.mkdir(rootFolder)
 except:
     pass
 	
 try:
-    os.makedir(outFolder)
+    os.mkdir(outFolder)
 except:
     pass
 
