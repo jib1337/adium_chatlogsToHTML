@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Jack Nelson | Adium chatlog to HTML converter
 
 import os
