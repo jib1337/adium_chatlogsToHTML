@@ -127,7 +127,7 @@ if htmlLoad == True:
             currentRoot = root.split("\\")[-1].split(' ')[0]
             try:
                 logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] New working directory: ' + currentRoot + '\n')
-                os.makedirs(outFolder + '/' + currentRoot)
+                os.mkdirs(outFolder + '/' + currentRoot)
             except:
                 # If there is already a directory with that name
                 pass
