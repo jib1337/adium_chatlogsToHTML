@@ -105,7 +105,8 @@ except Exception as e:
 
 # If the specified output directory doesn't exist, create it
 try:
-    os.makedirs(rootFolder)
+    os.makedir(rootFolder)
+	os.makedir(outFolder)
 except:
     pass
 
