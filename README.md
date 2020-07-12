@@ -1,26 +1,23 @@
 # adium_chatlogsToHTML | Jack Nelson, 2019
 
-Tested on Windows with log data created by Adium 1.4.
+Tested on Windows and Linux with log data created by Adium 1.4.
 
 Adium chatlogs are typically stored within a tree of directories, starting at:
-Home Folder → Library → Application Support → Adium <VERSION> → Users → Default → Logs
+`Home Folder → Library → Application Support → Adium <VERSION> → Users → Default → Logs`
 
 They are stored in XML format under both .xml and .chatlog suffixes, and they are best viewed with Adium's chat transcript viewer.
 However, if you would like to take these chat logs, and convert them into clean, readable HTML, this script will help to do that.
 
 ## Usage overview
-
 ```
-$ python3 adium_chatlogsToHTML.py --help
-usage: adium_chatlogsToHTML.py [-h] [-r ROOT] [-o OUT]
+usage: adium_chatlogsToHTML.py [-h] [-r rootfolder] [-o outfolder]
 
 Adium Chatlogs To HTML: Chatlog Converter
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -r ROOT, --root ROOT  Specify the root directory of where all the
-                        conversations are
-  -o OUT, --out OUT     Specify the output directory of processed chatlogs
+  -h, --help     show this help message and exit
+  -r rootfolder  Specify the root directory of where all the conversations are
+  -o outfolder   Specify the output directory of processed chatlogs
 ```
 
 1. Place all your adium chatlog folders/files in the "conversations" directory. This directory will be searched by the script for valid chatlogs.

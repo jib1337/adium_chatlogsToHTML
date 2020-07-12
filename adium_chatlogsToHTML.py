@@ -7,13 +7,9 @@ from datetime import datetime
 import xml.etree.ElementTree as ET
 
 argparser = argparse.ArgumentParser(description='Adium Chatlogs To HTML: Chatlog Converter')
-argparser.add_argument('-r', '--root', default='conversations', help='Specify the root directory of where all the conversations are')
-argparser.add_argument('-o', '--out', default='chatlogs_processed', help='Specify the output directory of processed chatlogs')
+argparser.add_argument('-r', metavar='rootfolder', default='conversations', help='Specify the root directory of where all the conversations are')
+argparser.add_argument('-o', metavar='outfolder', default='chatlogs_processed', help='Specify the output directory of processed chatlogs')
 args = argparser.parse_args()
-
-def convertPath(rootFilePath):
-    # convert os.walk file path to one we can use to open the file
-    return(rootFilePath.replace('\\', '/')[2:])
 
 def createHTML(conversationJSON, chatName, convoNumber):
     # Take the JSON - formatted conversation, construct and output HTML file.
@@ -55,7 +51,7 @@ def createHTML(conversationJSON, chatName, convoNumber):
 
         htmlComplete += ''.join(messages) + htmlSuffix
 
-        file = open(outFolder + '/' + chatName + '/' + chatName + '_' + str(convoNumber) + '.html', 'w', encoding = 'utf-8')
+        file = open(outFolder + os.sep + chatName + os.sep + chatName + '_' + str(convoNumber) + '.html', 'w', encoding = 'utf-8')
         file.write(htmlComplete)
         file.close()
         
@@ -87,8 +83,8 @@ def getConvo(root):
 
     return(conversation)
 
-rootFolder = args.root.rstrip('/')
-outFolder = args.out.rstrip('/')
+rootFolder = args.r.rstrip(os.sep)
+outFolder = args.o.rstrip(os.sep)
 
 htmlLoad = False
 try:
@@ -115,28 +111,31 @@ except:
     pass
 
 currentRoot = None
+
 if htmlLoad == True:
-    print('Starting conversion process now...')
+    print('[+] Starting conversion process now...')
     logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] Starting conversion process now...' + '\n')
 
-    for root, dirs, files in os.walk('.\\' + rootFolder):
-        if currentRoot == root.split("\\")[-1].split(' ')[0]:
+    for root, dirs, files in os.walk(rootFolder):
+        if currentRoot == root.split(os.sep)[-1].split(' ')[0]:
             # If the root directory is under the same email we previously processed, do not create a new folder
             pass
         else:
-            currentRoot = root.split("\\")[-1].split(' ')[0]
+            currentRoot = root.split(os.sep)[-1].split(' ')[0]
             try:
                 logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] New working directory: ' + currentRoot + '\n')
-                os.mkdirs(outFolder + '/' + currentRoot)
+                os.mkdir(outFolder + os.sep + currentRoot)
+                print('[+] Processing', currentRoot)
             except:
                 # If there is already a directory with that name
                 pass
             convoNumber = 1
+
         for xmlfile in files:
             # Traverse all the directories and only operation on .xml and .chatlog files
             if xmlfile.endswith('.xml') or xmlfile.endswith('.chatlog'):
                 try:
-                    xmlPath = (convertPath(root) + '/' + xmlfile)
+                    xmlPath = (root + os.sep + xmlfile)
                     convoRoot = ET.parse(xmlPath).getroot()
                 except Exception as e:
                     logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] An error occured when opening the file ' + xmlPath + ': ' + str(e) + '\n')
@@ -156,7 +155,8 @@ if htmlLoad == True:
     logFile.append('[' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '] Conversion process finished.' + '\n')
     logFile.append('Completed operations on ' + str(conversionCount) + ' logs.' + '\n')
     logFile.append('Error count: ' + str(errorCount) + '\n')
-    file = open(outFolder + '/' + 'logfile.txt', 'w')
+    file = open(outFolder + os.sep + 'logfile.txt', 'w')
     file.writelines(logFile)
     file.close()
-    print('Done.')
+    print(f'[+] Conversion completed with {errorCount} errors')
+    print('[+] See log file for details')
