@@ -1,6 +1,6 @@
 # adium_chatlogsToHTML | Jack Nelson, 2019
 
-Tested on Windows and Linux with log data created by Adium 1.4.
+Tested on Windows, Mac and Linux with log data created by Adium 1.4.
 
 Adium chatlogs are typically stored within a tree of directories, starting at:
 `Home Folder → Library → Application Support → Adium <VERSION> → Users → Default → Logs`
